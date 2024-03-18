@@ -6,7 +6,7 @@
 
     //Tabla de palabras reservadas
     char *tab_palabras_reser[] = {"alternative", "big", "evaluate", "instead", "large", "loop", "make", "number", "other", "real","repeat","select","small","step","stop","symbol","throw"};
-    char *tab_op_asign[] = {"~", "+~", "-~", "*~", "/~", "\\~","%~","^~"};     //Tabla de op. de asignacion
+    char *tab_op_asign[] = {"~", "+", "-", "*", "/~", "\\~","%~","^~"};     //Tabla de op. de asignacion
     
     //CHECAR ESTA PARTE
     char *tab_op_rel[] = {"^^", "^\"", "==", "^^=", "^\"=", "<>"};  //Tabla de op. relacionales
@@ -162,7 +162,7 @@ DELIMITADOR [ \t\n]+
 }
 
 [\[\]\(\)\{\},:;] {
-    //Lectura de simbolos especiales
+    //Lectura de simbolos
     //Clase 5
 
     char *texto = yytext;
@@ -175,24 +175,18 @@ DELIMITADOR [ \t\n]+
     indice_tabla_tokens++;
 }
 
-[OPERADOR] {
+[+\-*/%\^] {
     //Clase 6
 
     char *texto = yytext;
     //Se llama a la funcion para buscar el operador en la tabla
-    int posicion = buscarCadena(texto, tab_op_rel, 6);
-    if (posicion != -1) {
-
-        // Construir el token correctamente
-        char token[20]; // Ajusta el tamaño según las necesidades
-
-        //Se le asigna el numero de clase con la posicion en la tabla
-        snprintf(token, sizeof(token), "(6, %d)", posicion);
+    // Construir el token correctamente
+    char token[20]; // Ajusta el tamaño según las necesidades
+    snprintf(token, sizeof(token), "(6, %c)", texto[0]);
         
-        // Almacena el token en la tabla_tokens
-        tabla_tokens[indice_tabla_tokens] = strdup(token);
-        indice_tabla_tokens++;
-    } 
+    // Almacena el token en la tabla_tokens
+    tabla_tokens[indice_tabla_tokens] = strdup(token);
+    indice_tabla_tokens++;
 }
 
 
