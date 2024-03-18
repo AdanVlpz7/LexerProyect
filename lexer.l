@@ -1,6 +1,18 @@
 
 %{
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+struct Literal {
+    int posicion;
+    char dato[30]; // acepta cadenas maximo de 30 
+};
+
+struct Liteal tablaNumReales[100]; //tabla de literales para numeros reales de longitud 100
+struct Liteal tablaCadenas[100]; //tabla de literales para cadenas de longitud 100
+int numReales = 0;
+int numCadenas = 0;
 %}
 
 /* TOKENS */
@@ -9,18 +21,18 @@ ID [\$(([a-zA-z])+)]
 ENTERO10 [(0|([1-9]([0-9]?)+))]
 ENTERO8 [(O|o)(0|([1-7]([0-7]?)+))]
 NUM_REAL [(([1-9]([0-9]?)+\.([0-9]+))|\.([0-9]+)) ]
-CTE_CAD []
+CTE_CAD [("'"([^'\n]|'")*"'")|('"'([^"\n]|"')*'"')]
 SIMBOLO [[](){},:;]
 OPERADOR [+-*/%\^]
 OP_ASIGN ["="]
 OP_REL [[<>]=?|==]
 
-SALTO [ \t\n]+
-
+DELIMITADOR [ \t\n]+
 
 %%
 
-/* Palabras reservadas */
+{NUM_REAL} {tablaNumerosReales[numLiteralesNumericos].posicion = yylineno; strcpy(tablaNumerosReales[numLiteralesNumericos].dato, yytext); numLiteralesNumericos++;}
+{CTE_CAD} {tablaCadenas[numLiteralesCadenas].posicion = yylineno; strcpy(tablaCadenas[numLiteralesCadenas].dato, yytext); numLiteralesCadenas++;}
 
 "alternative"      { printf("Palabra reservada: alternative\n"); }
 "big"       { printf("Palabra reservada: big\n"); }
@@ -55,5 +67,18 @@ int main(int argc, char *argv[]) {
     yylex();
 
     fclose(archivo); //cerrar archivo Input.txt
+
+    //Imprimir tablas 
+    imprimirTablaLiterales(tablaNumerosReales, numLiteralesNumericos);
+    imprimirTablaLiterales(tablaCadenas, numLiteralesCadenas);
+
     return 0;
+}
+
+void ImprimirTabla(struct Literal tabla[], int numLiterales) {
+    printf("Tabla de Literales:\n");
+    printf("Posicion\tDato\n");
+    for (int i = 0; i < numLiterales; i++) {
+        printf("%d\t\t%s\n", tabla[i].posicion, tabla[i].dato);
+    }
 }
