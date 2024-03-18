@@ -67,43 +67,23 @@ DELIMITADOR [ \t\n]+
 
 %%
 
-"alternative"      { printf("Palabra reservada: alternative\n"); }
-"big"       { printf("Palabra reservada: big\n"); }
-"evaluate"  { printf("Palabra reservada: evaluate\n"); }
-"instead"   { printf("Palabra reservada: instead\n"); }
-"large"      { printf("Palabra reservada: large\n"); }
-"loop"      { printf("Palabra reservada: loop\n"); }
-"make"      { printf("Palabra reservada: make\n"); }
-"number"      { printf("Palabra reservada: number\n"); }
-"other"      { printf("Palabra reservada: other\n"); }
-"real"      { printf("Palabra reservada: real\n"); }
-"repeat"      { printf("Palabra reservada: repeat\n"); }
-"select"      { printf("Palabra reservada: select\n"); }
-"small"      { printf("Palabra reservada: small\n"); }
-"step"      { printf("Palabra reservada: step\n"); }
-"stop"      { printf("Palabra reservada: stop\n"); }
-"symbol"      { printf("Palabra reservada: symbol\n"); }
-"throw"      { printf("Palabra reservada: throw\n"); }
-
-[pal_reserv] {
-    //Clase 0
-
-    char *texto = yytext;
-    //Se llama a la funcion para buscar la palabra en la tabla
-    int posicion = buscarCadena(texto, tab_palabras_reser, 10);
-    if (posicion != -1) {
-
-        // Construir el token correctamente
-        char token[20]; // Ajusta el tamaño según las necesidades
-
-        //Se le asigna el numero de clase con la posicion en la tabla
-        snprintf(token, sizeof(token), "(0, %d)", posicion);
-        
-        // Almacena el token en la tabla_tokens
-        tabla_tokens[indice_tabla_tokens] = strdup(token);
-        indice_tabla_tokens++;
-    }
-}
+"alternative"      { printf("Palabra reservada: alternative\n"); char token[20]; snprintf(token, sizeof(token), "(0, 0)"); tabla_tokens[indice_tabla_tokens] = strdup(token); indice_tabla_tokens++; }
+"big"       { printf("Palabra reservada: big\n"); char token[20]; snprintf(token, sizeof(token), "(0, 1)"); tabla_tokens[indice_tabla_tokens] = strdup(token); indice_tabla_tokens++;}
+"evaluate"  { printf("Palabra reservada: evaluate\n"); char token[20]; snprintf(token, sizeof(token), "(0, 2)"); tabla_tokens[indice_tabla_tokens] = strdup(token); indice_tabla_tokens++;}
+"instead"   { printf("Palabra reservada: instead\n"); char token[20]; snprintf(token, sizeof(token), "(0, 3)"); tabla_tokens[indice_tabla_tokens] = strdup(token); indice_tabla_tokens++;}
+"large"      { printf("Palabra reservada: large\n"); char token[20]; snprintf(token, sizeof(token), "(0, 4)"); tabla_tokens[indice_tabla_tokens] = strdup(token); indice_tabla_tokens++;}
+"loop"      { printf("Palabra reservada: loop\n"); char token[20]; snprintf(token, sizeof(token), "(0, 5)"); tabla_tokens[indice_tabla_tokens] = strdup(token); indice_tabla_tokens++;}
+"make"      { printf("Palabra reservada: make\n"); char token[20]; snprintf(token, sizeof(token), "(0, 6)"); tabla_tokens[indice_tabla_tokens] = strdup(token); indice_tabla_tokens++;}
+"number"      { printf("Palabra reservada: number\n"); char token[20]; snprintf(token, sizeof(token), "(0, 7)"); tabla_tokens[indice_tabla_tokens] = strdup(token); indice_tabla_tokens++;}
+"other"      { printf("Palabra reservada: other\n"); char token[20]; snprintf(token, sizeof(token), "(0, 8)"); tabla_tokens[indice_tabla_tokens] = strdup(token); indice_tabla_tokens++;}
+"real"      { printf("Palabra reservada: real\n"); char token[20]; snprintf(token, sizeof(token), "(0, 9)"); tabla_tokens[indice_tabla_tokens] = strdup(token); indice_tabla_tokens++;}
+"repeat"      { printf("Palabra reservada: repeat\n"); char token[20]; snprintf(token, sizeof(token), "(0, 10)"); tabla_tokens[indice_tabla_tokens] = strdup(token); indice_tabla_tokens++;}
+"select"      { printf("Palabra reservada: select\n"); char token[20]; snprintf(token, sizeof(token), "(0, 11)"); tabla_tokens[indice_tabla_tokens] = strdup(token); indice_tabla_tokens++;}
+"small"      { printf("Palabra reservada: small\n"); char token[20]; snprintf(token, sizeof(token), "(0, 12)"); tabla_tokens[indice_tabla_tokens] = strdup(token); indice_tabla_tokens++;}
+"step"      { printf("Palabra reservada: step\n"); char token[20]; snprintf(token, sizeof(token), "(0, 13)"); tabla_tokens[indice_tabla_tokens] = strdup(token); indice_tabla_tokens++;}
+"stop"      { printf("Palabra reservada: stop\n"); char token[20]; snprintf(token, sizeof(token), "(0, 14)"); tabla_tokens[indice_tabla_tokens] = strdup(token); indice_tabla_tokens++;}
+"symbol"      { printf("Palabra reservada: symbol\n");char token[20]; snprintf(token, sizeof(token), "(0, 15)"); tabla_tokens[indice_tabla_tokens] = strdup(token); indice_tabla_tokens++; }
+"throw"      { printf("Palabra reservada: throw\n"); char token[20]; snprintf(token, sizeof(token), "(0, 16)"); tabla_tokens[indice_tabla_tokens] = strdup(token); indice_tabla_tokens++;}
 
 [op_arit] {
     //Clase 1
@@ -281,11 +261,11 @@ int main(int argc, char *argv[]) {
         printf("\nNo se puede abrir el archivo: %s\n", argv[1]);
         return 1;
     } else {
-        printf("\nEl archivo %s se abrió correctamente\n", argv[1]);
+        printf("\nEl archivo %s se abrio correctamente\n", argv[1]);
         //Inicia el analisis si se pudo abrir el archivo
         yylex();
     }
-    printf("\nFLEX finalizó la lectura del archivo %s\n", argv[1]);
+    printf("\nFLEX finalizo la lectura del archivo %s\n", argv[1]);
     //Se cierra el archivo al finalizar el analisis
     fclose(yyin);
 
