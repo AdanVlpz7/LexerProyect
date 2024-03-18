@@ -293,11 +293,17 @@ int main(int argc, char *argv[]) {
 
     //Se imprime la tabla de tokens
     printf("\nTokens\n");
+    FILE* tablaTokensTxt;
+    tablaTokensTxt = fopen("tablaTokens.txt","wt");
     for (int i = 0; i < indice_tabla_tokens; i++) {
         if (tabla_tokens[i]) {
+            char aux[21]; //cadena que se agregara en archivo tabla tokens
+            sprintf(aux, "%s\n",tabla_tokens[i]);
+            fputs(aux,tablaTokensTxt);
             printf("%s\n",tabla_tokens[i]);
         }
     }
+    fclose(tablaTokensTxt);
 
     //Se imprime la tabla de los no no reconocidos
     printf("\nErrores:\n");
