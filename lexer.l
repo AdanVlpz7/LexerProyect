@@ -58,7 +58,6 @@ ENTERO10 [(0|([1-9]([0-9]?)+))]
 ENTERO8 [(O|o)(0|([1-7]([0-7]?)+))]
 NUM_REAL [(([1-9]([0-9]?)+\.([0-9]+))|\.([0-9]+)) ]
 CTE_CAD [("'"([^'\n]|'")*"'")|('"'([^"\n]|"')*'"')]
-SIMBOLO [[](){},:;]
 OPERADOR [+-*/%\^]
 OP_ASIGN ["="]
 OP_REL [((<|>|!|=)=)|<|>]
@@ -85,75 +84,8 @@ DELIMITADOR [ \t\n]+
 "symbol"      { printf("Palabra reservada: symbol\n");char token[20]; snprintf(token, sizeof(token), "(0, 15)"); tabla_tokens[indice_tabla_tokens] = strdup(token); indice_tabla_tokens++; }
 "throw"      { printf("Palabra reservada: throw\n"); char token[20]; snprintf(token, sizeof(token), "(0, 16)"); tabla_tokens[indice_tabla_tokens] = strdup(token); indice_tabla_tokens++;}
 
-[op_arit] {
-    //Clase 1
-
-    char *texto = yytext;
-    // Construir el token correctamente
-    char token[20]; // Ajusta el tamaño según las necesidades
-    snprintf(token, sizeof(token), "(1, %s)", texto);
-        
-    // Almacena el token en la tabla_tokens
-    tabla_tokens[indice_tabla_tokens] = strdup(token);
-    indice_tabla_tokens++;
-
-}
-
-[op_asignacion] {
-    //Clase 2
-
-    char *texto = yytext;
-    //Se llama a la funcion para buscar el operador en la tabla
-    int posicion = buscarCadena(texto, tab_op_asign, 6);
-    if (posicion != -1) {
-
-        // Construir el token correctamente
-        char token[20]; // Ajusta el tamaño según las necesidades
-
-        //Se le asigna el numero de clase con la posicion en la tabla
-        snprintf(token, sizeof(token), "(2, %d)", posicion);
-        
-        // Almacena el token en la tabla_tokens
-        tabla_tokens[indice_tabla_tokens] = strdup(token);
-        indice_tabla_tokens++;
-    } 
-}
-
-[simb_especiales] {
-    //Clase 3
-
-    char *texto = yytext;
-    // Construir el token correctamente
-    char token[20]; // Ajusta el tamaño según las necesidades
-    snprintf(token, sizeof(token), "(3, %s)", texto);
-        
-    // Almacena el token en la tabla_tokens
-    tabla_tokens[indice_tabla_tokens] = strdup(token);
-    indice_tabla_tokens++;
-}
-
-[OPERADOR] {
-    //Clase 4
-
-    char *texto = yytext;
-    //Se llama a la funcion para buscar el operador en la tabla
-    int posicion = buscarCadena(texto, tab_op_rel, 6);
-    if (posicion != -1) {
-
-        // Construir el token correctamente
-        char token[20]; // Ajusta el tamaño según las necesidades
-
-        //Se le asigna el numero de clase con la posicion en la tabla
-        snprintf(token, sizeof(token), "(4, %d)", posicion);
-        
-        // Almacena el token en la tabla_tokens
-        tabla_tokens[indice_tabla_tokens] = strdup(token);
-        indice_tabla_tokens++;
-    } 
-}
-
 [ID] {
-    //Clase 5
+    //Clase 1
 
     char *texto = yytext;
     //Se llena la tabla de simbolos
@@ -165,7 +97,7 @@ DELIMITADOR [ \t\n]+
     char token[20]; // Ajusta el tamaño según las necesidades
 
     //Se le asigna el numero de clase con la posicion en la tabla
-    snprintf(token, sizeof(token), "(5, %d)", indice_tab_simb);
+    snprintf(token, sizeof(token), "(1, %d)", indice_tab_simb);
         
     // Almacena el token en la tabla_tokens
     tabla_tokens[indice_tabla_tokens] = strdup(token);
@@ -175,8 +107,8 @@ DELIMITADOR [ \t\n]+
 }
 
 
-[ENTERO10] {
-    //Clase 6
+[ENTERO10]|[ENTERO8] {
+    //Clase 2
 
     char *texto = yytext;
     //Almacena la constante en la tabla de constantes numericas
@@ -185,7 +117,7 @@ DELIMITADOR [ \t\n]+
 
     // Construir el token correctamente
     char token[20]; // Ajusta el tamaño según las necesidades
-    snprintf(token, sizeof(token), "(6, %d)", indice_tab_lit_num);
+    snprintf(token, sizeof(token), "(2, %d)", indice_tab_lit_num);
         
     // Almacena el token en la tabla_tokens
     tabla_tokens[indice_tabla_tokens] = strdup(token);
@@ -194,7 +126,7 @@ DELIMITADOR [ \t\n]+
 }
 
 [NUM_REAL] {
-    //Clase 7
+    //Clase 3
 
     char *texto = yytext;
     //Almacena la constante en la tabla de constantes numericas
@@ -203,7 +135,7 @@ DELIMITADOR [ \t\n]+
 
     // Construir el token correctamente
     char token[20]; // Ajusta el tamaño según tus necesidades
-    snprintf(token, sizeof(token), "(7, %d)", indice_tab_lit_num);
+    snprintf(token, sizeof(token), "(3, %d)", indice_tab_lit_num);
         
     // Almacena el token en la tabla_tokens
     tabla_tokens[indice_tabla_tokens] = strdup(token);
@@ -212,7 +144,7 @@ DELIMITADOR [ \t\n]+
 }
 
 [CTE_CAD] {
-    //Clase 8
+    //Clase 4
 
     char *texto = yytext;
     //Almacena la cadena en la tabla de literales
@@ -221,7 +153,7 @@ DELIMITADOR [ \t\n]+
 
     // Construir el token correctamente
     char token[20]; // Ajusta el tamaño según tus necesidades
-    snprintf(token, sizeof(token), "(8, %d)", indice_tab_lit_cad);
+    snprintf(token, sizeof(token), "(4, %d)", indice_tab_lit_cad);
         
     // Almacena el token en la tabla_tokens
     tabla_tokens[indice_tabla_tokens] = strdup(token);
@@ -229,24 +161,60 @@ DELIMITADOR [ \t\n]+
     indice_tab_lit_cad++;
 }
 
-[CONST_CARACTER] {
-    //Clase 9
+[\[\]\(\)\{\},:;] {
+    //Lectura de simbolos especiales
+    //Clase 5
 
     char *texto = yytext;
-    //Almacena el caracter en la tabla de cadenas
-    tab_lit_cad[indice_tab_lit_cad] = strdup(texto);
-
-
     // Construir el token correctamente
-    char token[20]; // Ajusta el tamaño según tus necesidades
-    snprintf(token, sizeof(token), "(9, %d)", indice_tab_lit_cad);
+    char token[20]; // Ajusta el tamaño según las necesidades
+    snprintf(token, sizeof(token), "(5, %s)", texto);
         
     // Almacena el token en la tabla_tokens
     tabla_tokens[indice_tabla_tokens] = strdup(token);
     indice_tabla_tokens++;
-    indice_tab_lit_cad++;
 }
 
+[OPERADOR] {
+    //Clase 6
+
+    char *texto = yytext;
+    //Se llama a la funcion para buscar el operador en la tabla
+    int posicion = buscarCadena(texto, tab_op_rel, 6);
+    if (posicion != -1) {
+
+        // Construir el token correctamente
+        char token[20]; // Ajusta el tamaño según las necesidades
+
+        //Se le asigna el numero de clase con la posicion en la tabla
+        snprintf(token, sizeof(token), "(6, %d)", posicion);
+        
+        // Almacena el token en la tabla_tokens
+        tabla_tokens[indice_tabla_tokens] = strdup(token);
+        indice_tabla_tokens++;
+    } 
+}
+
+
+[op_asignacion] {
+    //Clase 8
+
+    char *texto = yytext;
+    //Se llama a la funcion para buscar el operador en la tabla
+    int posicion = buscarCadena(texto, tab_op_asign, 6);
+    if (posicion != -1) {
+
+        // Construir el token correctamente
+        char token[20]; // Ajusta el tamaño según las necesidades
+
+        //Se le asigna el numero de clase con la posicion en la tabla
+        snprintf(token, sizeof(token), "(8, %d)", posicion);
+        
+        // Almacena el token en la tabla_tokens
+        tabla_tokens[indice_tabla_tokens] = strdup(token);
+        indice_tabla_tokens++;
+    } 
+}
 .   noReconocido();
 
 %%
@@ -293,6 +261,7 @@ int main(int argc, char *argv[]) {
 
     //Se imprime la tabla de tokens
     printf("\nTokens\n");
+    //abre archivo para escribir la tabla
     FILE* tablaTokensTxt;
     tablaTokensTxt = fopen("tablaTokens.txt","wt");
     for (int i = 0; i < indice_tabla_tokens; i++) {
