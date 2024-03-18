@@ -4,12 +4,8 @@
     #include <stdlib.h> // Agregamos esta inclusión para strdup
     FILE *yyin;     //Para abrir el archivo
 
-    //Tabla de palabras reservadas
-    char *tab_palabras_reser[] = {"alternative", "big", "evaluate", "instead", "large", "loop", "make", "number", "other", "real","repeat","select","small","step","stop","symbol","throw"};
-    char *tab_op_asign[] = {"~", "+", "-", "*", "/~", "\\~","%~","^~"};     //Tabla de op. de asignacion
-    
     //CHECAR ESTA PARTE
-    char *tab_op_rel[] = {"^^", "^\"", "==", "^^=", "^\"=", "<>"};  //Tabla de op. relacionales
+    char *tab_op_rel[] = {"<", ">", "<=", ">=", "==", "!="};  //Tabla de op. relacionales
 
     char *tab_lit_num[50];          //Tabla para almacenar las literales numericas
     int indice_tab_lit_num = 0;     //Indice para agregar las literales numericas
@@ -58,9 +54,6 @@ ENTERO10 [(0|([1-9]([0-9]?)+))]
 ENTERO8 [(O|o)(0|([1-7]([0-7]?)+))]
 NUM_REAL [(([1-9]([0-9]?)+\.([0-9]+))|\.([0-9]+)) ]
 CTE_CAD [("'"([^'\n]|'")*"'")|('"'([^"\n]|"')*'"')]
-OPERADOR [+-*/%\^]
-OP_ASIGN ["="]
-OP_REL [((<|>|!|=)=)|<|>]
 
 DELIMITADOR [ \t\n]+
 
@@ -175,7 +168,7 @@ DELIMITADOR [ \t\n]+
     indice_tabla_tokens++;
 }
 
-[+\-*/%\^] {
+[+\-*/%\\^] {
     //Clase 6
 
     char *texto = yytext;
@@ -190,24 +183,37 @@ DELIMITADOR [ \t\n]+
 }
 
 
-[op_asignacion] {
-    //Clase 8
-
+[<>]=?|==|!= {
+    //Clase 7
     char *texto = yytext;
     //Se llama a la funcion para buscar el operador en la tabla
-    int posicion = buscarCadena(texto, tab_op_asign, 6);
+    int posicion = buscarCadena(texto, tab_op_rel, 6);
     if (posicion != -1) {
 
         // Construir el token correctamente
         char token[20]; // Ajusta el tamaño según las necesidades
 
         //Se le asigna el numero de clase con la posicion en la tabla
-        snprintf(token, sizeof(token), "(8, %d)", posicion);
+        snprintf(token, sizeof(token), "(7, %d)", posicion);
         
         // Almacena el token en la tabla_tokens
         tabla_tokens[indice_tabla_tokens] = strdup(token);
         indice_tabla_tokens++;
-    } 
+    }
+}
+
+[=] {
+    //Clase 8
+
+    char *texto = yytext;
+    //Se llama a la funcion para buscar el operador en la tabla
+    // Construir el token correctamente
+    char token[20]; // Ajusta el tamaño según las necesidades
+    snprintf(token, sizeof(token), "(8, =)");
+        
+    // Almacena el token en la tabla_tokens
+    tabla_tokens[indice_tabla_tokens] = strdup(token);
+    indice_tabla_tokens++;
 }
 .   noReconocido();
 
