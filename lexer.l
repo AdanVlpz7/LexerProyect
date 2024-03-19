@@ -260,7 +260,7 @@ int main(int argc, char *argv[]) {
     for(int i=0; i < indice_tab_lit_cad; i++){
         if(tab_lit_cad[i]){
             char aux[21]; //cadena que se agregara en archivo tabla tokens
-            sprintf(aux, "%s\n",tabla_tokens[i]);
+            sprintf(aux, "(%d,%s)\n",i,tab_lit_cad[i]);
             fputs(aux,tablaLitCadTxt);
             printf("%d     %s\n",i,tab_lit_cad[i]);
         }
@@ -274,7 +274,7 @@ int main(int argc, char *argv[]) {
     for(int i=0; i < indice_tab_lit_num; i++){
         if(tab_lit_num[i]){
             char aux[21]; //cadena que se agregara en archivo tabla tokens
-            sprintf(aux, "%s\n",tabla_tokens[i]);
+            sprintf(aux, "(%d,%s)\n",i,tab_lit_num[i]);
             fputs(aux,tablaLitNumTxt);
             printf("%d     %s\n",i,tab_lit_num[i]);
         }
