@@ -49,8 +49,8 @@
 /* TOKENS */
 
 CONST_CARACTER [a-zA-Z]
-ID [\$(([a-zA-z])+)]
-ENTERO10 [(0|([1-9]([0-9]?)+))]
+ID \$[a-zA-Z]+
+ENTERO10 [0|[1-9][0-9]*]
 ENTERO8 [(O|o)(0|([1-7]([0-7]?)+))]
 NUM_REAL [(([1-9]([0-9]?)+\.([0-9]+))|\.([0-9]+)) ]
 CTE_CAD [("'"([^'\n]|'")*"'")|('"'([^"\n]|"')*'"')]
@@ -77,7 +77,7 @@ DELIMITADOR [ \t\n]+
 "symbol"      { printf("Palabra reservada: symbol\n");char token[20]; snprintf(token, sizeof(token), "(0, 15)"); tabla_tokens[indice_tabla_tokens] = strdup(token); indice_tabla_tokens++; }
 "throw"      { printf("Palabra reservada: throw\n"); char token[20]; snprintf(token, sizeof(token), "(0, 16)"); tabla_tokens[indice_tabla_tokens] = strdup(token); indice_tabla_tokens++;}
 
-[ID] {
+\$[a-zA-Z]+ {
     //Clase 1
 
     char *texto = yytext;
@@ -105,7 +105,12 @@ DELIMITADOR [ \t\n]+
 
     char *texto = yytext;
     //Almacena la constante en la tabla de constantes numericas
-    tab_lit_num[indice_tab_lit_num] = strdup(texto);
+    //printf("%s",texto);
+    //for(int i = 0; i < yytext.length; i++){
+        tab_lit_num[indice_tab_lit_num] = strdup(texto);
+        
+    //}
+    printf(tab_lit_num[indice_tab_lit_num]);
 
 
     // Construir el token correctamente
@@ -239,9 +244,16 @@ int main(int argc, char *argv[]) {
 
     //Se imprime la tabla de simbolos
     printf("\nTabla de simbolos\n");
+    FILE* tablaSimbolosTxt;
+    tablaSimbolosTxt = fopen("tablaSimbolos.txt","wt");
     for (int i=0; i < indice_tab_simb; i++){
+        //escribir en archivo Tabla de Simbolos
+        char aux[21]; //cadena que se agregara en archivo tabla tokens
+        //sprintf("%d\t%s\t%d\n",simbolos[i].posicion,simbolos[i].identificador,simbolos[i].tipo);
+        //fputs(aux,tablaSimbolosTxt);
         printf("%d\t%s\t%d\n",simbolos[i].posicion,simbolos[i].identificador,simbolos[i].tipo);
     }
+    fclose(tablaSimbolosTxt);
 
     //Se imprime la tabla de cadenas
     printf("\nTabla de literales(cadenas)\n");
@@ -253,11 +265,17 @@ int main(int argc, char *argv[]) {
 
     //Se imprime la tabla de literales numericas
     printf("\nTabla de literales(numericas)\n");
+    FILE* tablaLitNumTxt;
+    tablaLitNumTxt = fopen("tablaLiteralesNum.txt","wt");
     for(int i=0; i < indice_tab_lit_num; i++){
         if(tab_lit_num[i]){
+            char aux[21]; //cadena que se agregara en archivo tabla tokens
+            sprintf(aux, "%s\n",tabla_tokens[i]);
+            fputs(aux,tablaLitNumTxt);
             printf("%d     %s\n",i,tab_lit_num[i]);
         }
     }
+    fclose(tablaLitNumTxt);
 
     //Se imprime la tabla de tokens
     printf("\nTokens\n");
