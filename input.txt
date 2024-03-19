@@ -1,3 +1,12 @@
+"hola"
+'mundo'
+hola
+$ejemplo
+$Variable
+$OtraVariable
+$XYZ
+10.0
+21.1
 alternative
 big
 evaluate

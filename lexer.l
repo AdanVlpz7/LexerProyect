@@ -46,14 +46,12 @@
     }
 %}
 
-/* TOKENS */
-
-CONST_CARACTER [a-zA-Z]
+/* TOKENS */ 
 ID \$[a-zA-Z]+
 ENTERO10 [0|[1-9][0-9]*]
 ENTERO8 [(O|o)(0|([1-7]([0-7]?)+))]
 NUM_REAL [(([1-9]([0-9]?)+\.([0-9]+))|\.([0-9]+)) ]
-CTE_CAD [("'"([^'\n]|'")*"'")|('"'([^"\n]|"')*'"')]
+CTE_CAD \"([^"]|\\.)*\"|'([^']|\\.)*'
 
 DELIMITADOR [ \t\n]+
 
@@ -123,7 +121,7 @@ DELIMITADOR [ \t\n]+
     indice_tab_lit_num++;
 }
 
-[NUM_REAL] {
+(([1-9][0-9]*\.[0-9]+)|(\.[0-9]+)) {
     //Clase 3
 
     char *texto = yytext;
@@ -141,13 +139,13 @@ DELIMITADOR [ \t\n]+
     indice_tab_lit_num++;
 }
 
-[CTE_CAD] {
+\"([^"]|\\.)*\"|'([^']|\\.)*' {
     //Clase 4
 
     char *texto = yytext;
+    printf("Cadena detectada: %s\n", texto); // Agregar mensaje de depuración
     //Almacena la cadena en la tabla de literales
     tab_lit_cad[indice_tab_lit_cad] = strdup(texto);
-
 
     // Construir el token correctamente
     char token[20]; // Ajusta el tamaño según tus necesidades
@@ -189,7 +187,7 @@ DELIMITADOR [ \t\n]+
 
 
 [<>]=?|==|!= {
-    //Clase 7
+    //Clase 7 - Operadores relacionales
     char *texto = yytext;
     //Se llama a la funcion para buscar el operador en la tabla
     int posicion = buscarCadena(texto, tab_op_rel, 6);
@@ -257,11 +255,17 @@ int main(int argc, char *argv[]) {
 
     //Se imprime la tabla de cadenas
     printf("\nTabla de literales(cadenas)\n");
+    FILE* tablaLitCadTxt;
+    tablaLitCadTxt = fopen("tablaLiteralesCad.txt","wt");
     for(int i=0; i < indice_tab_lit_cad; i++){
         if(tab_lit_cad[i]){
+            char aux[21]; //cadena que se agregara en archivo tabla tokens
+            sprintf(aux, "%s\n",tabla_tokens[i]);
+            fputs(aux,tablaLitCadTxt);
             printf("%d     %s\n",i,tab_lit_cad[i]);
         }
     }
+    fclose(tablaLitCadTxt);
 
     //Se imprime la tabla de literales numericas
     printf("\nTabla de literales(numericas)\n");
