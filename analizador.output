@@ -51,10 +51,10 @@ Gramática
     1 program: statement
     2        | program statement
 
-    3 statement: asignacionSentencia
+    3 statement: A
     4          | /* vacío */
 
-    5 asignacionSentencia: 'i' '=' asignacion ';'
+    5 A: 'i' '=' asignacion ';'
 
     6 asignacion: 's'
     7           | expresionAritmetica
@@ -122,7 +122,7 @@ program (48)
     en la izquierda: 1 2, en la derecha: 0 2
 statement (49)
     en la izquierda: 3 4, en la derecha: 1 2
-asignacionSentencia (50)
+A (50)
     en la izquierda: 5, en la derecha: 3
 asignacion (51)
     en la izquierda: 6 7, en la derecha: 5
@@ -139,14 +139,14 @@ estado 0
     'i'       [reduce usando la regla 4 (statement)]
     $default  reduce usando la regla 4 (statement)
 
-    program              ir al estado 2
-    statement            ir al estado 3
-    asignacionSentencia  ir al estado 4
+    program    ir al estado 2
+    statement  ir al estado 3
+    A          ir al estado 4
 
 
 estado 1
 
-    5 asignacionSentencia: 'i' . '=' asignacion ';'
+    5 A: 'i' . '=' asignacion ';'
 
     '='  desplazar e ir al estado 5
 
@@ -162,8 +162,8 @@ estado 2
     $end  [reduce usando la regla 4 (statement)]
     'i'   [reduce usando la regla 4 (statement)]
 
-    statement            ir al estado 7
-    asignacionSentencia  ir al estado 4
+    statement  ir al estado 7
+    A          ir al estado 4
 
 
 estado 3
@@ -175,14 +175,14 @@ estado 3
 
 estado 4
 
-    3 statement: asignacionSentencia .
+    3 statement: A .
 
     $default  reduce usando la regla 3 (statement)
 
 
 estado 5
 
-    5 asignacionSentencia: 'i' '=' . asignacion ';'
+    5 A: 'i' '=' . asignacion ';'
 
     'n'  desplazar e ir al estado 8
     'r'  desplazar e ir al estado 9
@@ -231,7 +231,7 @@ estado 10
 
 estado 11
 
-    5 asignacionSentencia: 'i' '=' asignacion . ';'
+    5 A: 'i' '=' asignacion . ';'
 
     ';'  desplazar e ir al estado 13
 
@@ -245,6 +245,6 @@ estado 12
 
 estado 13
 
-    5 asignacionSentencia: 'i' '=' asignacion ';' .
+    5 A: 'i' '=' asignacion ';' .
 
-    $default  reduce usando la regla 5 (asignacionSentencia)
+    $default  reduce usando la regla 5 (A)

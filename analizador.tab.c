@@ -413,8 +413,7 @@ static const char *const yytname[] =
   "'z'", "'i'", "'n'", "'r'", "'s'", "'='", "'l'", "'u'", "'e'", "'d'",
   "'>'", "'<'", "'['", "']'", "'('", "')'", "'{'", "'}'", "','", "':'",
   "';'", "'%'", "'\\\\'", "'^'", "'+'", "'-'", "'*'", "'/'", "$accept",
-  "program", "statement", "asignacionSentencia", "asignacion",
-  "expresionAritmetica", 0
+  "program", "statement", "A", "asignacion", "expresionAritmetica", 0
 };
 #endif
 
@@ -1320,7 +1319,7 @@ yyreduce:
 
 
 /* Line 1455 of yacc.c  */
-#line 1324 "analizador.tab.c"
+#line 1323 "analizador.tab.c"
       default: break;
     }
   YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);
@@ -1540,20 +1539,22 @@ int yyerror(char *s)
 	return 0;
 }
 
-int Program(int argc, char *argv[])
+int Programa()
 {
+    printf("\nEmpezo analisis sintactico");
     //Aqui se verifica la apertura del archivo 
-    if ((yyin = fopen(argv[1], "rt")) == NULL) {
-        printf("\nNo se puede abrir el archivo: %s\n", argv[1]);
+    if ((yyin = fopen("inputParser.txt", "rt")) == NULL) {
+        printf("\nNo se puede abrir el archivo: %s\n", "inputParser.txt");
         return 1;
     } else {
-        printf("\nEl archivo %s se abrio correctamente\n", argv[1]);
+        printf("\nEl archivo %s se abrio correctamente\n", "inputParser.txt");
         //Inicia el analisis si se pudo abrir el archivo
-        yylex();
+        //Se cierra el archivo al finalizar el analisis
+        yyparse();
     }
-    printf("\nFLEX finalizo la lectura del archivo %s\n", argv[1]);
-    //Se cierra el archivo al finalizar el analisis
-    yyparse();
+     
+    printf("\nBISON finalizo la lectura del archivo %s\n", "inputParser.txt");
+    
     fclose(yyin);
     
     return 0;

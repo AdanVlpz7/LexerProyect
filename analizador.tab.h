@@ -45,4 +45,4 @@ typedef int YYSTYPE;
 
 extern YYSTYPE yylval;
 
-
+int Programa();
