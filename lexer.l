@@ -211,7 +211,7 @@ DELIMITADOR [ \t\n]+
         tabla_tokens[indice_tabla_tokens] = strdup(token);
         indice_tabla_tokens++;
     }
-    //strcat(entrada_sintactico, token);
+    strcat(entrada_sintactico, texto);
 }
 
 [=] {

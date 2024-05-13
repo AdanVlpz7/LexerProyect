@@ -973,7 +973,7 @@ YY_RULE_SETUP
         tabla_tokens[indice_tabla_tokens] = strdup(token);
         indice_tabla_tokens++;
     }
-    //strcat(entrada_sintactico, token);
+    strcat(entrada_sintactico, texto);
 }
 	YY_BREAK
 case 25:
