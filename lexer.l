@@ -211,7 +211,16 @@ DELIMITADOR [ \t\n]+
         tabla_tokens[indice_tabla_tokens] = strdup(token);
         indice_tabla_tokens++;
     }
+    if (strcmp(texto, "<") == 0 || strcmp(texto, ">") == 0)
     strcat(entrada_sintactico, texto);
+if (strcmp(texto, "<=") == 0) 
+    strcat(entrada_sintactico, "l");
+if (strcmp(texto, ">=") == 0)
+    strcat(entrada_sintactico, "u");
+if (strcmp(texto, "==") == 0)
+    strcat(entrada_sintactico, "e");
+if (strcmp(texto, "!=") == 0)
+    strcat(entrada_sintactico, "d");
 }
 
 [=] {
