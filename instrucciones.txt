@@ -1,0 +1,7 @@
+Para compilar: 
+Paso 1:
+flex lexer.l
+Paso 2:
+gcc lex.yy.c 
+Paso 3: 
+.\a.exe input.txt
