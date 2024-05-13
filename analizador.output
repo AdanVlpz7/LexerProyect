@@ -1,0 +1,250 @@
+Terminals unused in grammar
+
+   'a'
+   'b'
+   'f'
+   't'
+   'g'
+   'w'
+   'm'
+   '#'
+   'o'
+   'x'
+   'j'
+   'h'
+   'p'
+   'c'
+   'q'
+   'y'
+   'z'
+   'l'
+   'u'
+   'e'
+   'd'
+   '>'
+   '<'
+   '['
+   ']'
+   '('
+   ')'
+   '{'
+   '}'
+   ','
+   ':'
+   '%'
+   '\\'
+   '^'
+   '+'
+   '-'
+   '*'
+   '/'
+
+
+Estado 0 conflictos: 1 desplazamiento(s)/reducción(ones)
+Estado 2 conflictos: 2 desplazamiento(s)/reducción(ones)
+
+
+Gramática
+
+    0 $accept: program $end
+
+    1 program: statement
+    2        | program statement
+
+    3 statement: asignacionSentencia
+    4          | /* vacío */
+
+    5 asignacionSentencia: 'i' '=' asignacion ';'
+
+    6 asignacion: 's'
+    7           | expresionAritmetica
+
+    8 expresionAritmetica: 'n'
+    9                    | 'r'
+   10                    | /* vacío */
+
+
+Terminales con las reglas donde aparecen
+
+$end (0) 0
+'#' (35)
+'%' (37)
+'(' (40)
+')' (41)
+'*' (42)
+'+' (43)
+',' (44)
+'-' (45)
+'/' (47)
+':' (58)
+';' (59) 5
+'<' (60)
+'=' (61) 5
+'>' (62)
+'[' (91)
+'\\' (92)
+']' (93)
+'^' (94)
+'a' (97)
+'b' (98)
+'c' (99)
+'d' (100)
+'e' (101)
+'f' (102)
+'g' (103)
+'h' (104)
+'i' (105) 5
+'j' (106)
+'l' (108)
+'m' (109)
+'n' (110) 8
+'o' (111)
+'p' (112)
+'q' (113)
+'r' (114) 9
+'s' (115) 6
+'t' (116)
+'u' (117)
+'w' (119)
+'x' (120)
+'y' (121)
+'z' (122)
+'{' (123)
+'}' (125)
+error (256)
+
+
+No terminales con las reglas donde aparecen
+
+$accept (47)
+    en la izquierda: 0
+program (48)
+    en la izquierda: 1 2, en la derecha: 0 2
+statement (49)
+    en la izquierda: 3 4, en la derecha: 1 2
+asignacionSentencia (50)
+    en la izquierda: 5, en la derecha: 3
+asignacion (51)
+    en la izquierda: 6 7, en la derecha: 5
+expresionAritmetica (52)
+    en la izquierda: 8 9 10, en la derecha: 7
+
+
+estado 0
+
+    0 $accept: . program $end
+
+    'i'  desplazar e ir al estado 1
+
+    'i'       [reduce usando la regla 4 (statement)]
+    $default  reduce usando la regla 4 (statement)
+
+    program              ir al estado 2
+    statement            ir al estado 3
+    asignacionSentencia  ir al estado 4
+
+
+estado 1
+
+    5 asignacionSentencia: 'i' . '=' asignacion ';'
+
+    '='  desplazar e ir al estado 5
+
+
+estado 2
+
+    0 $accept: program . $end
+    2 program: program . statement
+
+    $end  desplazar e ir al estado 6
+    'i'   desplazar e ir al estado 1
+
+    $end  [reduce usando la regla 4 (statement)]
+    'i'   [reduce usando la regla 4 (statement)]
+
+    statement            ir al estado 7
+    asignacionSentencia  ir al estado 4
+
+
+estado 3
+
+    1 program: statement .
+
+    $default  reduce usando la regla 1 (program)
+
+
+estado 4
+
+    3 statement: asignacionSentencia .
+
+    $default  reduce usando la regla 3 (statement)
+
+
+estado 5
+
+    5 asignacionSentencia: 'i' '=' . asignacion ';'
+
+    'n'  desplazar e ir al estado 8
+    'r'  desplazar e ir al estado 9
+    's'  desplazar e ir al estado 10
+
+    $default  reduce usando la regla 10 (expresionAritmetica)
+
+    asignacion           ir al estado 11
+    expresionAritmetica  ir al estado 12
+
+
+estado 6
+
+    0 $accept: program $end .
+
+    $default  aceptar
+
+
+estado 7
+
+    2 program: program statement .
+
+    $default  reduce usando la regla 2 (program)
+
+
+estado 8
+
+    8 expresionAritmetica: 'n' .
+
+    $default  reduce usando la regla 8 (expresionAritmetica)
+
+
+estado 9
+
+    9 expresionAritmetica: 'r' .
+
+    $default  reduce usando la regla 9 (expresionAritmetica)
+
+
+estado 10
+
+    6 asignacion: 's' .
+
+    $default  reduce usando la regla 6 (asignacion)
+
+
+estado 11
+
+    5 asignacionSentencia: 'i' '=' asignacion . ';'
+
+    ';'  desplazar e ir al estado 13
+
+
+estado 12
+
+    7 asignacion: expresionAritmetica .
+
+    $default  reduce usando la regla 7 (asignacion)
+
+
+estado 13
+
+    5 asignacionSentencia: 'i' '=' asignacion ';' .
+
+    $default  reduce usando la regla 5 (asignacionSentencia)

@@ -2,7 +2,7 @@
     #include <string.h> //Para manejar las cadenas
     #include <stdio.h>
     #include <stdlib.h> // Agregamos esta inclusión para strdup
-    
+    #include "analizador.tab.h"
     FILE *yyin;     //Para abrir el archivo
 
     //CHECAR ESTA PARTE
@@ -323,8 +323,27 @@ int main(int argc, char *argv[]) {
         }
     }
 
+    printf("Cadena de atomos\n");
     for(int i = 0; i <= 5000; i++){
         printf("%c",entrada_sintactico[i]);
     }
+
+     //abre archivo para escribir la cadena de atomos
+    FILE* cadenaAtomosTxt;
+    cadenaAtomosTxt = fopen("inputParser.txt","wt");
+    for (int i = 0; i < 5000; i++) {
+        if (entrada_sintactico[i]) {
+            char aux[21]; //cadena que se agregara en archivo tabla tokens
+            sprintf(aux, "%s\n",entrada_sintactico[i]);
+            fputs(aux,cadenaAtomosTxt);
+            printf("%s\n",entrada_sintactico[i]);
+        }
+    }
+    fclose(cadenaAtomosTxt);
+
     return 0;
+}
+
+void Program(const char *entrada){
+
 }
