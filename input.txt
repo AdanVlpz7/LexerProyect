@@ -1,2 +1,1 @@
-$cadenaPrueba="hola";
-$numReal = 27;
+$cadenaPrueba

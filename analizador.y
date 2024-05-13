@@ -3,72 +3,18 @@
 
 int yylex();
 int yyerror(char *s);
-FILE *yyin;
+extern FILE *yyin;
+int Programa();
+
 %}
 
-%token 'a'
-%token 'b' 
-%token 'f' 
-%token 't' 
-%token 'g' 
-%token 'w' 
-%token 'm' 
-%token '#' 
-%token 'o' 
-%token 'x' 
-%token 'j' 
-%token 'h' 
-%token 'p' 
-%token 'c' 
-%token 'q' 
-%token 'y' 
-%token 'z' // palabras reservadas
-%token 'i'
-%token 'n' 'r' //constantes numericas
-%token 's'
-%token '='
-%token 'l' 'u' 'e' 'd' 
-%token '>'
-%token '<'
-%token '['
-%token ']'
-%token '('
-%token ')'
-%token '{'
-%token '}'
-%token ','
-%token ':'
-%token ';'
-%token '%'
-%token '\\'
-%token '^'
-%left '>' '<'
-%left '+' '-'
-%left '*' '/'
+%start program
+%token i 
+
 %%
 
 program:
-    statement
-    | program statement
-    ;
-
-statement:
-    A
-    | /* other types of statements */
-    ;
-
-A :
-    'i' '=' asignacion ';' {printf("Sentencia de asignacion correcta");}
-    ;
-
-asignacion: 
-    's'
-    | expresionAritmetica
-    ;
-expresionAritmetica:
-    'n'
-    | 'r'
-    | /* other types of expressions */
+    i {printf("detecto identificador");} 
     ;
 
 %%
@@ -87,11 +33,11 @@ int Programa()
         return 1;
     } else {
         printf("\nEl archivo %s se abrio correctamente\n", "inputParser.txt");
-        //Inicia el analisis si se pudo abrir el archivo
-        //Se cierra el archivo al finalizar el analisis
-        yyparse();
+        if(yyparse() == 0)
+            printf("El analisis sintactico fue exitoso\n");
+        
     }
-     
+    
     printf("\nBISON finalizo la lectura del archivo %s\n", "inputParser.txt");
     
     fclose(yyin);

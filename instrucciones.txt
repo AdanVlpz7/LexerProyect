@@ -1,8 +1,8 @@
 Para compilar: 
 Paso 1:
-flex lexer.l
-Paso 2:
 bison analizador.y
+Paso 2:
+flex lexer.l
 Paso 3: 
 gcc lex.yy.c analizador.tab.c 
 Paso 3: 

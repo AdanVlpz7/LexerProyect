@@ -33,6 +33,15 @@
    version 2.2 of Bison.  */
 
 
+/* Tokens.  */
+#ifndef YYTOKENTYPE
+# define YYTOKENTYPE
+   /* Put the tokens into the symbol table, so that GDB and other debuggers
+      know about them.  */
+   enum yytokentype {
+     i = 258
+   };
+#endif
 
 
 
@@ -44,5 +53,5 @@ typedef int YYSTYPE;
 #endif
 
 extern YYSTYPE yylval;
-
 int Programa();
+
