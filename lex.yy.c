@@ -788,87 +788,87 @@ do_action:	/* This label is used only to access EOF actions. */
 case 1:
 YY_RULE_SETUP
 #line 65 "lexer.l"
-{ printf("Palabra reservada: alternative\n"); char token[20]; snprintf(token, sizeof(token), "(0, 0)"); tabla_tokens[indice_tabla_tokens] = strdup(token); indice_tabla_tokens++; strcat(entrada_sintactico, "a");}
+{ printf("Palabra reservada: alternative\n"); char token[20]; snprintf(token, sizeof(token), "(0, 0)"); tabla_tokens[indice_tabla_tokens] = strdup(token); indice_tabla_tokens++; strcat(entrada_sintactico, "a"); return a;}
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
 #line 66 "lexer.l"
-{ printf("Palabra reservada: big\n"); char token[20]; snprintf(token, sizeof(token), "(0, 1)"); tabla_tokens[indice_tabla_tokens] = strdup(token); indice_tabla_tokens++; strcat(entrada_sintactico, "b");}
+{ printf("Palabra reservada: big\n"); char token[20]; snprintf(token, sizeof(token), "(0, 1)"); tabla_tokens[indice_tabla_tokens] = strdup(token); indice_tabla_tokens++; strcat(entrada_sintactico, "b"); return b;}
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
 #line 67 "lexer.l"
-{ printf("Palabra reservada: evaluate\n"); char token[20]; snprintf(token, sizeof(token), "(0, 2)"); tabla_tokens[indice_tabla_tokens] = strdup(token); indice_tabla_tokens++; strcat(entrada_sintactico, "f");}
+{ printf("Palabra reservada: evaluate\n"); char token[20]; snprintf(token, sizeof(token), "(0, 2)"); tabla_tokens[indice_tabla_tokens] = strdup(token); indice_tabla_tokens++; strcat(entrada_sintactico, "f"); return f;}
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
 #line 68 "lexer.l"
-{ printf("Palabra reservada: instead\n"); char token[20]; snprintf(token, sizeof(token), "(0, 3)"); tabla_tokens[indice_tabla_tokens] = strdup(token); indice_tabla_tokens++; strcat(entrada_sintactico, "t");}
+{ printf("Palabra reservada: instead\n"); char token[20]; snprintf(token, sizeof(token), "(0, 3)"); tabla_tokens[indice_tabla_tokens] = strdup(token); indice_tabla_tokens++; strcat(entrada_sintactico, "t"); return t;}
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
 #line 69 "lexer.l"
-{ printf("Palabra reservada: large\n"); char token[20]; snprintf(token, sizeof(token), "(0, 4)"); tabla_tokens[indice_tabla_tokens] = strdup(token); indice_tabla_tokens++;strcat(entrada_sintactico, "g");}
+{ printf("Palabra reservada: large\n"); char token[20]; snprintf(token, sizeof(token), "(0, 4)"); tabla_tokens[indice_tabla_tokens] = strdup(token); indice_tabla_tokens++;strcat(entrada_sintactico, "g"); return g;}
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
 #line 70 "lexer.l"
-{ printf("Palabra reservada: loop\n"); char token[20]; snprintf(token, sizeof(token), "(0, 5)"); tabla_tokens[indice_tabla_tokens] = strdup(token); indice_tabla_tokens++;strcat(entrada_sintactico, "w");}
+{ printf("Palabra reservada: loop\n"); char token[20]; snprintf(token, sizeof(token), "(0, 5)"); tabla_tokens[indice_tabla_tokens] = strdup(token); indice_tabla_tokens++;strcat(entrada_sintactico, "w"); return w;}
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
 #line 71 "lexer.l"
-{ printf("Palabra reservada: make\n"); char token[20]; snprintf(token, sizeof(token), "(0, 6)"); tabla_tokens[indice_tabla_tokens] = strdup(token); indice_tabla_tokens++;strcat(entrada_sintactico, "m");}
+{ printf("Palabra reservada: make\n"); char token[20]; snprintf(token, sizeof(token), "(0, 6)"); tabla_tokens[indice_tabla_tokens] = strdup(token); indice_tabla_tokens++;strcat(entrada_sintactico, "m"); return m;}
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
 #line 72 "lexer.l"
-{ printf("Palabra reservada: number\n"); char token[20]; snprintf(token, sizeof(token), "(0, 7)"); tabla_tokens[indice_tabla_tokens] = strdup(token); indice_tabla_tokens++;strcat(entrada_sintactico, "#");}
+{ printf("Palabra reservada: number\n"); char token[20]; snprintf(token, sizeof(token), "(0, 7)"); tabla_tokens[indice_tabla_tokens] = strdup(token); indice_tabla_tokens++;strcat(entrada_sintactico, "#"); return number;}
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
 #line 73 "lexer.l"
-{ printf("Palabra reservada: other\n"); char token[20]; snprintf(token, sizeof(token), "(0, 8)"); tabla_tokens[indice_tabla_tokens] = strdup(token); indice_tabla_tokens++;strcat(entrada_sintactico, "o");}
+{ printf("Palabra reservada: other\n"); char token[20]; snprintf(token, sizeof(token), "(0, 8)"); tabla_tokens[indice_tabla_tokens] = strdup(token); indice_tabla_tokens++;strcat(entrada_sintactico, "o"); return o;}
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
 #line 74 "lexer.l"
-{ printf("Palabra reservada: real\n"); char token[20]; snprintf(token, sizeof(token), "(0, 9)"); tabla_tokens[indice_tabla_tokens] = strdup(token); indice_tabla_tokens++;strcat(entrada_sintactico, "x");}
+{ printf("Palabra reservada: real\n"); char token[20]; snprintf(token, sizeof(token), "(0, 9)"); tabla_tokens[indice_tabla_tokens] = strdup(token); indice_tabla_tokens++;strcat(entrada_sintactico, "x"); return x;}
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
 #line 75 "lexer.l"
-{ printf("Palabra reservada: repeat\n"); char token[20]; snprintf(token, sizeof(token), "(0, 10)"); tabla_tokens[indice_tabla_tokens] = strdup(token); indice_tabla_tokens++;strcat(entrada_sintactico, "j");}
+{ printf("Palabra reservada: repeat\n"); char token[20]; snprintf(token, sizeof(token), "(0, 10)"); tabla_tokens[indice_tabla_tokens] = strdup(token); indice_tabla_tokens++;strcat(entrada_sintactico, "j"); return j;}
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
 #line 76 "lexer.l"
-{ printf("Palabra reservada: select\n"); char token[20]; snprintf(token, sizeof(token), "(0, 11)"); tabla_tokens[indice_tabla_tokens] = strdup(token); indice_tabla_tokens++;strcat(entrada_sintactico, "h");}
+{ printf("Palabra reservada: select\n"); char token[20]; snprintf(token, sizeof(token), "(0, 11)"); tabla_tokens[indice_tabla_tokens] = strdup(token); indice_tabla_tokens++;strcat(entrada_sintactico, "h"); return h;}
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
 #line 77 "lexer.l"
-{ printf("Palabra reservada: small\n"); char token[20]; snprintf(token, sizeof(token), "(0, 12)"); tabla_tokens[indice_tabla_tokens] = strdup(token); indice_tabla_tokens++;strcat(entrada_sintactico, "p");}
+{ printf("Palabra reservada: small\n"); char token[20]; snprintf(token, sizeof(token), "(0, 12)"); tabla_tokens[indice_tabla_tokens] = strdup(token); indice_tabla_tokens++;strcat(entrada_sintactico, "p"); return p;}
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
 #line 78 "lexer.l"
-{ printf("Palabra reservada: step\n"); char token[20]; snprintf(token, sizeof(token), "(0, 13)"); tabla_tokens[indice_tabla_tokens] = strdup(token); indice_tabla_tokens++;strcat(entrada_sintactico, "c");}
+{ printf("Palabra reservada: step\n"); char token[20]; snprintf(token, sizeof(token), "(0, 13)"); tabla_tokens[indice_tabla_tokens] = strdup(token); indice_tabla_tokens++;strcat(entrada_sintactico, "c"); return c;}
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
 #line 79 "lexer.l"
-{ printf("Palabra reservada: stop\n"); char token[20]; snprintf(token, sizeof(token), "(0, 14)"); tabla_tokens[indice_tabla_tokens] = strdup(token); indice_tabla_tokens++;strcat(entrada_sintactico, "q");}
+{ printf("Palabra reservada: stop\n"); char token[20]; snprintf(token, sizeof(token), "(0, 14)"); tabla_tokens[indice_tabla_tokens] = strdup(token); indice_tabla_tokens++;strcat(entrada_sintactico, "q"); return q;}
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
 #line 80 "lexer.l"
-{ printf("Palabra reservada: symbol\n");char token[20]; snprintf(token, sizeof(token), "(0, 15)"); tabla_tokens[indice_tabla_tokens] = strdup(token); indice_tabla_tokens++; strcat(entrada_sintactico, "y");}
+{ printf("Palabra reservada: symbol\n");char token[20]; snprintf(token, sizeof(token), "(0, 15)"); tabla_tokens[indice_tabla_tokens] = strdup(token); indice_tabla_tokens++; strcat(entrada_sintactico, "y"); return y;}
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
 #line 81 "lexer.l"
-{ printf("Palabra reservada: throw\n"); char token[20]; snprintf(token, sizeof(token), "(0, 16)"); tabla_tokens[indice_tabla_tokens] = strdup(token); indice_tabla_tokens++;strcat(entrada_sintactico, "z");}
+{ printf("Palabra reservada: throw\n"); char token[20]; snprintf(token, sizeof(token), "(0, 16)"); tabla_tokens[indice_tabla_tokens] = strdup(token); indice_tabla_tokens++;strcat(entrada_sintactico, "z"); return z;}
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
@@ -893,11 +893,12 @@ YY_RULE_SETUP
     indice_tabla_tokens++;
     indice_tab_simb++;
     strcat(entrada_sintactico, "i");
+    return ID;
 }
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 106 "lexer.l"
+#line 107 "lexer.l"
 {
     //Clase 2
 
@@ -920,11 +921,12 @@ YY_RULE_SETUP
     indice_tabla_tokens++;
     indice_tab_lit_num++;
     strcat(entrada_sintactico, "n");
+    return n;
 }
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 130 "lexer.l"
+#line 132 "lexer.l"
 {
     //Clase 3
 
@@ -942,11 +944,12 @@ YY_RULE_SETUP
     indice_tabla_tokens++;
     indice_tab_lit_num++;
     strcat(entrada_sintactico, "r");
+    return r;
 }
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 149 "lexer.l"
+#line 152 "lexer.l"
 {
     //Clase 4
 
@@ -964,11 +967,12 @@ YY_RULE_SETUP
     indice_tabla_tokens++;
     indice_tab_lit_cad++;
     strcat(entrada_sintactico, "s");
+    return s;
 }
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 168 "lexer.l"
+#line 172 "lexer.l"
 {
     //Lectura de simbolos
     //Clase 5
@@ -985,7 +989,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 182 "lexer.l"
+#line 186 "lexer.l"
 {
     //Clase 6
 
@@ -1002,7 +1006,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 197 "lexer.l"
+#line 201 "lexer.l"
 {
     //Clase 7 - Operadores relacionales
     char *texto = yytext;
@@ -1034,7 +1038,7 @@ if (strcmp(texto, "!=") == 0)
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 226 "lexer.l"
+#line 230 "lexer.l"
 {
     //Clase 8
 
@@ -1048,19 +1052,20 @@ YY_RULE_SETUP
     tabla_tokens[indice_tabla_tokens] = strdup(token);
     indice_tabla_tokens++;
     strcat(entrada_sintactico, "=");
+    return EQU;
 }
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 240 "lexer.l"
+#line 245 "lexer.l"
 noReconocido();
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 242 "lexer.l"
+#line 247 "lexer.l"
 ECHO;
 	YY_BREAK
-#line 1064 "lex.yy.c"
+#line 1069 "lex.yy.c"
 			case YY_STATE_EOF(INITIAL):
 				yyterminate();
 
@@ -1944,7 +1949,7 @@ int main()
 	return 0;
 	}
 #endif
-#line 242 "lexer.l"
+#line 247 "lexer.l"
 
 
 int yywrap() {
@@ -2025,7 +2030,7 @@ int main(int argc, char *argv[]) {
     printf("\nErrores:\n");
     for (int i=0; i < indice_no_reconocidos; i++){
         if (tabla_no_reconocidos[i]){
-            printf("%s no reconocido\n",tabla_no_reconocidos[i]);
+            //printf("%s no reconocido\n",tabla_no_reconocidos[i]);
         }
     }
 
@@ -2047,4 +2052,3 @@ int main(int argc, char *argv[]) {
     Programa();
     return 0;
 }
-

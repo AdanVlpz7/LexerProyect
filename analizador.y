@@ -9,12 +9,14 @@ int Programa();
 %}
 
 %start program
-%token i 
-
+%token ID
+%token a b f t g w m number o x j h p c q y z
+%token n r s
+%token EQU
 %%
 
 program:
-    i {printf("detecto identificador");} 
+    ID {printf("detecto identificador");} 
     ;
 
 %%
@@ -44,4 +46,3 @@ int Programa()
     
     return 0;
 }
-

@@ -39,7 +39,28 @@
    /* Put the tokens into the symbol table, so that GDB and other debuggers
       know about them.  */
    enum yytokentype {
-     i = 258
+     ID = 258,
+     a = 259,
+     b = 260,
+     f = 261,
+     t = 262,
+     g = 263,
+     w = 264,
+     m = 265,
+     number = 266,
+     o = 267,
+     x = 268,
+     j = 269,
+     h = 270,
+     p = 271,
+     c = 272,
+     q = 273,
+     y = 274,
+     z = 275,
+     n = 276,
+     r = 277,
+     s = 278,
+     EQU = 279
    };
 #endif
 

@@ -62,23 +62,23 @@ DELIMITADOR [ \t\n]+
 
 %%
 
-"alternative"      { printf("Palabra reservada: alternative\n"); char token[20]; snprintf(token, sizeof(token), "(0, 0)"); tabla_tokens[indice_tabla_tokens] = strdup(token); indice_tabla_tokens++; strcat(entrada_sintactico, "a");}
-"big"       { printf("Palabra reservada: big\n"); char token[20]; snprintf(token, sizeof(token), "(0, 1)"); tabla_tokens[indice_tabla_tokens] = strdup(token); indice_tabla_tokens++; strcat(entrada_sintactico, "b");}
-"evaluate"  { printf("Palabra reservada: evaluate\n"); char token[20]; snprintf(token, sizeof(token), "(0, 2)"); tabla_tokens[indice_tabla_tokens] = strdup(token); indice_tabla_tokens++; strcat(entrada_sintactico, "f");}
-"instead"   { printf("Palabra reservada: instead\n"); char token[20]; snprintf(token, sizeof(token), "(0, 3)"); tabla_tokens[indice_tabla_tokens] = strdup(token); indice_tabla_tokens++; strcat(entrada_sintactico, "t");}
-"large"      { printf("Palabra reservada: large\n"); char token[20]; snprintf(token, sizeof(token), "(0, 4)"); tabla_tokens[indice_tabla_tokens] = strdup(token); indice_tabla_tokens++;strcat(entrada_sintactico, "g");}
-"loop"      { printf("Palabra reservada: loop\n"); char token[20]; snprintf(token, sizeof(token), "(0, 5)"); tabla_tokens[indice_tabla_tokens] = strdup(token); indice_tabla_tokens++;strcat(entrada_sintactico, "w");}
-"make"      { printf("Palabra reservada: make\n"); char token[20]; snprintf(token, sizeof(token), "(0, 6)"); tabla_tokens[indice_tabla_tokens] = strdup(token); indice_tabla_tokens++;strcat(entrada_sintactico, "m");}
-"number"      { printf("Palabra reservada: number\n"); char token[20]; snprintf(token, sizeof(token), "(0, 7)"); tabla_tokens[indice_tabla_tokens] = strdup(token); indice_tabla_tokens++;strcat(entrada_sintactico, "#");}
-"other"      { printf("Palabra reservada: other\n"); char token[20]; snprintf(token, sizeof(token), "(0, 8)"); tabla_tokens[indice_tabla_tokens] = strdup(token); indice_tabla_tokens++;strcat(entrada_sintactico, "o");}
-"real"      { printf("Palabra reservada: real\n"); char token[20]; snprintf(token, sizeof(token), "(0, 9)"); tabla_tokens[indice_tabla_tokens] = strdup(token); indice_tabla_tokens++;strcat(entrada_sintactico, "x");}
-"repeat"      { printf("Palabra reservada: repeat\n"); char token[20]; snprintf(token, sizeof(token), "(0, 10)"); tabla_tokens[indice_tabla_tokens] = strdup(token); indice_tabla_tokens++;strcat(entrada_sintactico, "j");}
-"select"      { printf("Palabra reservada: select\n"); char token[20]; snprintf(token, sizeof(token), "(0, 11)"); tabla_tokens[indice_tabla_tokens] = strdup(token); indice_tabla_tokens++;strcat(entrada_sintactico, "h");}
-"small"      { printf("Palabra reservada: small\n"); char token[20]; snprintf(token, sizeof(token), "(0, 12)"); tabla_tokens[indice_tabla_tokens] = strdup(token); indice_tabla_tokens++;strcat(entrada_sintactico, "p");}
-"step"      { printf("Palabra reservada: step\n"); char token[20]; snprintf(token, sizeof(token), "(0, 13)"); tabla_tokens[indice_tabla_tokens] = strdup(token); indice_tabla_tokens++;strcat(entrada_sintactico, "c");}
-"stop"      { printf("Palabra reservada: stop\n"); char token[20]; snprintf(token, sizeof(token), "(0, 14)"); tabla_tokens[indice_tabla_tokens] = strdup(token); indice_tabla_tokens++;strcat(entrada_sintactico, "q");}
-"symbol"      { printf("Palabra reservada: symbol\n");char token[20]; snprintf(token, sizeof(token), "(0, 15)"); tabla_tokens[indice_tabla_tokens] = strdup(token); indice_tabla_tokens++; strcat(entrada_sintactico, "y");}
-"throw"      { printf("Palabra reservada: throw\n"); char token[20]; snprintf(token, sizeof(token), "(0, 16)"); tabla_tokens[indice_tabla_tokens] = strdup(token); indice_tabla_tokens++;strcat(entrada_sintactico, "z");}
+"alternative"      { printf("Palabra reservada: alternative\n"); char token[20]; snprintf(token, sizeof(token), "(0, 0)"); tabla_tokens[indice_tabla_tokens] = strdup(token); indice_tabla_tokens++; strcat(entrada_sintactico, "a"); return a;}
+"big"       { printf("Palabra reservada: big\n"); char token[20]; snprintf(token, sizeof(token), "(0, 1)"); tabla_tokens[indice_tabla_tokens] = strdup(token); indice_tabla_tokens++; strcat(entrada_sintactico, "b"); return b;}
+"evaluate"  { printf("Palabra reservada: evaluate\n"); char token[20]; snprintf(token, sizeof(token), "(0, 2)"); tabla_tokens[indice_tabla_tokens] = strdup(token); indice_tabla_tokens++; strcat(entrada_sintactico, "f"); return f;}
+"instead"   { printf("Palabra reservada: instead\n"); char token[20]; snprintf(token, sizeof(token), "(0, 3)"); tabla_tokens[indice_tabla_tokens] = strdup(token); indice_tabla_tokens++; strcat(entrada_sintactico, "t"); return t;}
+"large"      { printf("Palabra reservada: large\n"); char token[20]; snprintf(token, sizeof(token), "(0, 4)"); tabla_tokens[indice_tabla_tokens] = strdup(token); indice_tabla_tokens++;strcat(entrada_sintactico, "g"); return g;}
+"loop"      { printf("Palabra reservada: loop\n"); char token[20]; snprintf(token, sizeof(token), "(0, 5)"); tabla_tokens[indice_tabla_tokens] = strdup(token); indice_tabla_tokens++;strcat(entrada_sintactico, "w"); return w;}
+"make"      { printf("Palabra reservada: make\n"); char token[20]; snprintf(token, sizeof(token), "(0, 6)"); tabla_tokens[indice_tabla_tokens] = strdup(token); indice_tabla_tokens++;strcat(entrada_sintactico, "m"); return m;}
+"number"      { printf("Palabra reservada: number\n"); char token[20]; snprintf(token, sizeof(token), "(0, 7)"); tabla_tokens[indice_tabla_tokens] = strdup(token); indice_tabla_tokens++;strcat(entrada_sintactico, "#"); return number;}
+"other"      { printf("Palabra reservada: other\n"); char token[20]; snprintf(token, sizeof(token), "(0, 8)"); tabla_tokens[indice_tabla_tokens] = strdup(token); indice_tabla_tokens++;strcat(entrada_sintactico, "o"); return o;}
+"real"      { printf("Palabra reservada: real\n"); char token[20]; snprintf(token, sizeof(token), "(0, 9)"); tabla_tokens[indice_tabla_tokens] = strdup(token); indice_tabla_tokens++;strcat(entrada_sintactico, "x"); return x;}
+"repeat"      { printf("Palabra reservada: repeat\n"); char token[20]; snprintf(token, sizeof(token), "(0, 10)"); tabla_tokens[indice_tabla_tokens] = strdup(token); indice_tabla_tokens++;strcat(entrada_sintactico, "j"); return j;}
+"select"      { printf("Palabra reservada: select\n"); char token[20]; snprintf(token, sizeof(token), "(0, 11)"); tabla_tokens[indice_tabla_tokens] = strdup(token); indice_tabla_tokens++;strcat(entrada_sintactico, "h"); return h;}
+"small"      { printf("Palabra reservada: small\n"); char token[20]; snprintf(token, sizeof(token), "(0, 12)"); tabla_tokens[indice_tabla_tokens] = strdup(token); indice_tabla_tokens++;strcat(entrada_sintactico, "p"); return p;}
+"step"      { printf("Palabra reservada: step\n"); char token[20]; snprintf(token, sizeof(token), "(0, 13)"); tabla_tokens[indice_tabla_tokens] = strdup(token); indice_tabla_tokens++;strcat(entrada_sintactico, "c"); return c;}
+"stop"      { printf("Palabra reservada: stop\n"); char token[20]; snprintf(token, sizeof(token), "(0, 14)"); tabla_tokens[indice_tabla_tokens] = strdup(token); indice_tabla_tokens++;strcat(entrada_sintactico, "q"); return q;}
+"symbol"      { printf("Palabra reservada: symbol\n");char token[20]; snprintf(token, sizeof(token), "(0, 15)"); tabla_tokens[indice_tabla_tokens] = strdup(token); indice_tabla_tokens++; strcat(entrada_sintactico, "y"); return y;}
+"throw"      { printf("Palabra reservada: throw\n"); char token[20]; snprintf(token, sizeof(token), "(0, 16)"); tabla_tokens[indice_tabla_tokens] = strdup(token); indice_tabla_tokens++;strcat(entrada_sintactico, "z"); return z;}
 
 \$[a-zA-Z]+ {
     //Clase 1
@@ -100,6 +100,7 @@ DELIMITADOR [ \t\n]+
     indice_tabla_tokens++;
     indice_tab_simb++;
     strcat(entrada_sintactico, "i");
+    return ID;
 }
 
 
@@ -125,6 +126,7 @@ DELIMITADOR [ \t\n]+
     indice_tabla_tokens++;
     indice_tab_lit_num++;
     strcat(entrada_sintactico, "n");
+    return n;
 }
 
 (([1-9][0-9]*\.[0-9]+)|(\.[0-9]+)) {
@@ -144,6 +146,7 @@ DELIMITADOR [ \t\n]+
     indice_tabla_tokens++;
     indice_tab_lit_num++;
     strcat(entrada_sintactico, "r");
+    return r;
 }
 
 \"([^"]|\\.)*\"|'([^']|\\.)*' {
@@ -163,6 +166,7 @@ DELIMITADOR [ \t\n]+
     indice_tabla_tokens++;
     indice_tab_lit_cad++;
     strcat(entrada_sintactico, "s");
+    return s;
 }
 
 [\[\]\(\)\{\},:;] {
@@ -236,6 +240,7 @@ if (strcmp(texto, "!=") == 0)
     tabla_tokens[indice_tabla_tokens] = strdup(token);
     indice_tabla_tokens++;
     strcat(entrada_sintactico, "=");
+    return EQU;
 }
 .   noReconocido();
 
@@ -319,7 +324,7 @@ int main(int argc, char *argv[]) {
     printf("\nErrores:\n");
     for (int i=0; i < indice_no_reconocidos; i++){
         if (tabla_no_reconocidos[i]){
-            printf("%s no reconocido\n",tabla_no_reconocidos[i]);
+            //printf("%s no reconocido\n",tabla_no_reconocidos[i]);
         }
     }
 
@@ -341,4 +346,3 @@ int main(int argc, char *argv[]) {
     Programa();
     return 0;
 }
-
